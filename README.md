@@ -51,8 +51,8 @@ centos/7
 
 * Due to how networking is configured in Vagrant, you will need to tell your master node to listen on the "control" node IP (192.168.4.110) vs the default Vagrant IP.
 
-* This can be done via kubeadm when initializing the "control" master node:
-$ sudo kubeadm init --apiserver-advertise-address=192.168.4.110
+* This can be done via kubeadm when initializing the "control" master node:  
+### $ sudo kubeadm init --apiserver-advertise-address=192.168.4.110
 
 -------------------------
 Example Cluster Setup:
