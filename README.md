@@ -15,7 +15,7 @@ https://www.vagrantup.com/intro/getting-started/index.html
 Usage:
 -------------------------
 $ git clone https://github.com/jeromeza/k8s_cka_vagrant.git  
-$ cd k8s_cka_vagrant/
+$ cd k8s_cka_vagrant/  
 $ vagrant up    
 $ vagrant ssh control   
 $ vagrant ssh worker1  
