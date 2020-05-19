@@ -54,5 +54,5 @@ centos/7
 (eth1) for this labs network (192.168.4.110 - 113)
 
 * As such you will need to specify this on your 'control' node, aka your Kubernetes master node - when creating your master, as this will ensure it binds to the correct ip address:
-### kubeadm init --api-advertise-addresses=192.168.4.110
+### kubeadm init -apiserver-advertise-address=192.168.4.110
 
