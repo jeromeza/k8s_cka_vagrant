@@ -48,3 +48,11 @@ https://raw.githubusercontent.com/sandervanvugt/cka/master/setup-kubetools.sh
 
 Makes use of the following Centos 7 Vagrant image as the base OS:  
 centos/7
+
+Vagrant creates 2x network interfaces:  
+(eth0) for it's default network. 
+(eth1) for this labs network (192.168.4.110 - 113)
+
+As such you will need to specify this on your 'control' node, aka your Kubernetes master node - when creating your master, as this will ensure it binds to the correct ip address:
+# kubeadm init --api-advertise-addresses=192.168.4.110
+
