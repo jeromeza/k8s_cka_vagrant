@@ -38,7 +38,7 @@ $ vagrant ssh worker3
 -------------------------
 Notes:
 -------------------------
-Makes use of Sander's setup found here:
+* Makes use of Sander's setup found here:
 https://github.com/sandervanvugt/cka
 
 Particularly the below, which are referenced in the Vagrantfile as bootstrapped scripts, which will be run during the Vagrant creation process:
@@ -46,10 +46,10 @@ Particularly the below, which are referenced in the Vagrantfile as bootstrapped 
 https://raw.githubusercontent.com/sandervanvugt/cka/master/setup-docker.sh
 https://raw.githubusercontent.com/sandervanvugt/cka/master/setup-kubetools.sh
 
-Makes use of the following Centos 7 Vagrant image as the base OS:  
+* Makes use of the following Centos 7 Vagrant image as the base OS:  
 centos/7
 
-Vagrant creates 2x network interfaces:  
+* Vagrant creates 2x network interfaces:  
 (eth0) for it's default network. 
 (eth1) for this labs network (192.168.4.110 - 113)
 
