@@ -56,6 +56,7 @@ Example Cluster Setup:
 ### --- EXAMPLE VAGRANT ENVIRONMENT SETUP ---  
 $ git clone https://github.com/jeromeza/k8s_cka_vagrant.git  
 $ cd k8s_cka_vagrant/  
+$ vagrant up  
 
 ### --- EXAMPLE CONTROL (MASTER) KUBERNETES NODE SETUP ---  
 $ vagrant ssh control  
