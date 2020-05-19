@@ -8,7 +8,7 @@ https://learning.oreilly.com/videos/certified-kubernetes-administrator/978013667
 -------------------------
 Prerequisites needed:
 -------------------------
-Vagrant:
+Vagrant:  
 https://www.vagrantup.com/intro/getting-started/index.html
 
 -------------------------
