@@ -11,6 +11,19 @@ Prerequisites needed:
 Vagrant:  
 https://www.vagrantup.com/intro/getting-started/index.html
 
+Virtualbox:  
+https://www.virtualbox.org/wiki/Downloads  
+  
+"Vagrant is a tool for building and managing virtual machine environments in a single workflow. With an easy-to-use workflow and focus on automation, Vagrant lowers development environment setup time, increases production parity, and makes the "works on my machine" excuse a relic of the past."
+
+Essentially it's a platform that allows you to spin up VMs in a programmatic fashion. Repeatable, reusable and quick.
+
+---
+
+Virtualbox is a Hypervisor which allows you to run VMs on your host machine (in this case my laptop) - Vagrant will make use of Virtualbox to create and run your VMs, while Vagrant itself will manage VM config - things like networking, boot scripts and any additional config needed to deploy in an easy and automated fashion.
+
+No more manual installations needed!  
+
 -------------------------
 Usage:
 -------------------------
