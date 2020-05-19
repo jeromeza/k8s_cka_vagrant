@@ -33,5 +33,5 @@ Particularly the below, which are referenced in the Vagrantfile as bootstrapped 
 https://raw.githubusercontent.com/sandervanvugt/cka/master/setup-docker.sh
 https://raw.githubusercontent.com/sandervanvugt/cka/master/setup-kubetools.sh
 
-Makes use of the following Centos 7 Vagrant image as the base OS:
+Makes use of the following Centos 7 Vagrant image as the base OS:  
 centos/7
