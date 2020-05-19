@@ -53,58 +53,58 @@ centos/7
 Example Cluster Setup:
 -------------------------
 
---- EXAMPLE VAGRANT ENVIRONMENT SETUP ---
-$ git clone https://github.com/jeromeza/k8s_cka_vagrant.git
-$ cd k8s_cka_vagrant/
+### --- EXAMPLE VAGRANT ENVIRONMENT SETUP ---  
+$ git clone https://github.com/jeromeza/k8s_cka_vagrant.git  
+$ cd k8s_cka_vagrant/  
 
---- EXAMPLE CONTROL (MASTER) KUBERNETES NODE SETUP ---
-$ vagrant ssh control
-$ sudo kubeadm init --apiserver-advertise-address=192.168.4.110
+### --- EXAMPLE CONTROL (MASTER) KUBERNETES NODE SETUP ---  
+$ vagrant ssh control  
+$ sudo kubeadm init --apiserver-advertise-address=192.168.4.110  
+  
+To start using your cluster, you need to run the following as a regular user:  
+  
+  mkdir -p $HOME/.kube  
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config  
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config  
+  
+Then you can join any number of worker nodes by running the following on each as root:  
+  
+kubeadm join 192.168.4.110:6443 --token btnom1.grmjn91si3j7w9kx \  
+    --discovery-token-ca-cert-hash sha256:ffc9f54f15bfc0822ac694739e6a2f26413108414d77563b82be3479a7af66f2  
+  
+$ mkdir -p $HOME/.kube  
+$ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config  
+$ sudo chown $(id -u):$(id -g) $HOME/.kube/config  
+  
+NOTE: We now no longer need to use 'root' for k8s tasks like kubectl on our CONTROL node, we can now use our 'vagrant' user  
+  
+### --- ENABLE NETWORKING ON CONTROL (MASTER) KUBERNETES NODE ---  
+$ kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"  
+$ exit  
+  
+### --- EXAMPLE WORKER KUBERNETES NODE SETUP ---  
+$ vagrant ssh worker1  
+$ sudo kubeadm join 192.168.4.110:6443 --token btnom1.grmjn91si3j7w9kx \  
+    --discovery-token-ca-cert-hash sha256:ffc9f54f15bfc0822ac694739e6a2f26413108414d77563b82be3479a7af66f2  
+  
+$ vagrant ssh worker2  
+$ sudo kubeadm join 192.168.4.110:6443 --token btnom1.grmjn91si3j7w9kx \  
+    --discovery-token-ca-cert-hash sha256:ffc9f54f15bfc0822ac694739e6a2f26413108414d77563b82be3479a7af66f2  
+  
+$ vagrant ssh worker3  
+$ sudo kubeadm join 192.168.4.110:6443 --token btnom1.grmjn91si3j7w9kx \  
+    --discovery-token-ca-cert-hash sha256:ffc9f54f15bfc0822ac694739e6a2f26413108414d77563b82be3479a7af66f2  
 
-To start using your cluster, you need to run the following as a regular user:
-
-  mkdir -p $HOME/.kube
-  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-  sudo chown $(id -u):$(id -g) $HOME/.kube/config
-
-Then you can join any number of worker nodes by running the following on each as root:
-
-kubeadm join 192.168.4.110:6443 --token btnom1.grmjn91si3j7w9kx \
-    --discovery-token-ca-cert-hash sha256:ffc9f54f15bfc0822ac694739e6a2f26413108414d77563b82be3479a7af66f2
-
-$ mkdir -p $HOME/.kube
-$ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-$ sudo chown $(id -u):$(id -g) $HOME/.kube/config
-
-NOTE: We now no longer need to use 'root' for k8s tasks like kubectl on our CONTROL node, we can now use our 'vagrant' user
-
---- ENABLE NETWORKING ON CONTROL (MASTER) KUBERNETES NODE ---
-$ kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
-$ exit
-
---- EXAMPLE WORKER KUBERNETES NODE SETUP ---
-$ vagrant ssh worker1
-$ sudo kubeadm join 192.168.4.110:6443 --token btnom1.grmjn91si3j7w9kx \
-    --discovery-token-ca-cert-hash sha256:ffc9f54f15bfc0822ac694739e6a2f26413108414d77563b82be3479a7af66f2
-
-$ vagrant ssh worker2
-$ sudo kubeadm join 192.168.4.110:6443 --token btnom1.grmjn91si3j7w9kx \
-    --discovery-token-ca-cert-hash sha256:ffc9f54f15bfc0822ac694739e6a2f26413108414d77563b82be3479a7af66f2
-
-$ vagrant ssh worker3
-$ sudo kubeadm join 192.168.4.110:6443 --token btnom1.grmjn91si3j7w9kx \
-    --discovery-token-ca-cert-hash sha256:ffc9f54f15bfc0822ac694739e6a2f26413108414d77563b82be3479a7af66f2
-
-This node has joined the cluster:
-* Certificate signing request was sent to apiserver and a response was received.
-* The Kubelet was informed of the new secure connection details.
-
-Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
-
---- TEST NODES FROM MASTER - ALL IS WORKING ---
-$ kubectl get nodes
-NAME                  STATUS   ROLES    AGE    VERSION
-control.example.com   Ready    master   4m6s   v1.18.2
-worker1.example.com   Ready    <none>   112s   v1.18.2
-worker2.example.com   Ready    <none>   82s    v1.18.2
-worker3.example.com   Ready    <none>   72s    v1.18.2
+This node has joined the cluster:  
+* Certificate signing request was sent to apiserver and a response was received.  
+* The Kubelet was informed of the new secure connection details.  
+  
+Run 'kubectl get nodes' on the control-plane to see this node join the cluster.  
+  
+### --- TEST NODES FROM MASTER - ALL IS WORKING ---  
+$ kubectl get nodes  
+NAME                  STATUS   ROLES    AGE    VERSION  
+control.example.com   Ready    master   4m6s   v1.18.2  
+worker1.example.com   Ready    <none>   112s   v1.18.2  
+worker2.example.com   Ready    <none>   82s    v1.18.2  
+worker3.example.com   Ready    <none>   72s    v1.18.2  
