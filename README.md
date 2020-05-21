@@ -38,16 +38,21 @@ $ vagrant ssh worker3
 -------------------------
 Notes:
 -------------------------
-Makes use of Sander's setup found here:
+* Makes use of Sander's setup found here:
 https://github.com/sandervanvugt/cka
 
-Particularly the below, which are referenced in the Vagrantfile as bootstrapped scripts, which will be run during the Vagrant creation process:
+* Particularly the below, which are referenced in the Vagrantfile as bootstrapped scripts, which will be run during the Vagrant creation process:
 
 https://raw.githubusercontent.com/sandervanvugt/cka/master/setup-docker.sh
 https://raw.githubusercontent.com/sandervanvugt/cka/master/setup-kubetools.sh
 
-Makes use of the following Centos 7 Vagrant image as the base OS:  
+* Makes use of the following Centos 7 Vagrant image as the base OS:  
 centos/7
+
+* Due to how networking is configured in Vagrant, you will need to tell your master node to listen on the "control" node IP (192.168.4.110) vs the default Vagrant IP.
+
+* This can be done via kubeadm when initializing the "control" master node:  
+### $ sudo kubeadm init --apiserver-advertise-address=192.168.4.110
 
 -------------------------
 Example Cluster Setup:
@@ -56,6 +61,7 @@ Example Cluster Setup:
 ### --- EXAMPLE VAGRANT ENVIRONMENT SETUP ---  
 $ git clone https://github.com/jeromeza/k8s_cka_vagrant.git  
 $ cd k8s_cka_vagrant/  
+$ vagrant up  
 
 ### --- EXAMPLE CONTROL (MASTER) KUBERNETES NODE SETUP ---  
 $ vagrant ssh control  
