@@ -16,7 +16,7 @@ Vagrant.configure(2) do |config|
       v.cpus = 2
     end
     control.vm.provision "shell", path: "prereqs.sh"
-    control.vm.provision "shell", path: "https://raw.githubusercontent.com/gwynforthewyn/cka/master/setup-docker.sh"
+    control.vm.provision "shell", path: "https://raw.githubusercontent.com/gwynforthewyn/cka/master/setup-container.sh"
     control.vm.provision "shell", path: "https://raw.githubusercontent.com/gwynforthewyn/cka/master/setup-kubetools.sh"
   end
 
@@ -34,7 +34,7 @@ Vagrant.configure(2) do |config|
         v.cpus = 1
       end
       workernode.vm.provision "shell", path: "prereqs.sh"
-      workernode.vm.provision "shell", path: "https://raw.githubusercontent.com/gwynforthewyn/cka/master/setup-docker.sh"
+      workernode.vm.provision "shell", path: "https://raw.githubusercontent.com/gwynforthewyn/cka/master/setup-container.sh"
       workernode.vm.provision "shell", path: "https://raw.githubusercontent.com/gwynforthewyn/cka/master/setup-kubetools.sh"
     end
   end
