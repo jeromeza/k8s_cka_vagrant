@@ -9,7 +9,7 @@ Vagrant.configure(2) do |config|
   config.vm.define "control" do |control|
     control.vm.box = "centos/7"
     control.vm.hostname = "control.example.com"
-    control.vm.network "private_network", ip: "192.168.4.110"
+    control.vm.network "private_network", ip: "192.168.56.110"
     control.vm.provider "virtualbox" do |v|
       v.name = "control"
       v.memory = 2048
@@ -27,7 +27,7 @@ Vagrant.configure(2) do |config|
     config.vm.define "worker#{i}" do |workernode|
       workernode.vm.box = "centos/7"
       workernode.vm.hostname = "worker#{i}.example.com"
-      workernode.vm.network "private_network", ip: "192.168.4.11#{i}"
+      workernode.vm.network "private_network", ip: "192.168.56.11#{i}"
       workernode.vm.provider "virtualbox" do |v|
         v.name = "worker#{i}"
         v.memory = 1024
