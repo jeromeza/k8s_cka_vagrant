@@ -49,10 +49,10 @@ https://raw.githubusercontent.com/sandervanvugt/cka/master/setup-kubetools.sh
 * Makes use of the following Centos 7 Vagrant image as the base OS:  
 centos/7
 
-* Due to how networking is configured in Vagrant, you will need to tell your master node to listen on the "control" node IP (192.168.4.110) vs the default Vagrant IP.
+* Due to how networking is configured in Vagrant, you will need to tell your master node to listen on the "control" node IP (192.168.56.110) vs the default Vagrant IP.
 
 * This can be done via kubeadm when initializing the "control" master node:  
-### $ sudo kubeadm init --apiserver-advertise-address=192.168.4.110
+### $ sudo kubeadm init --apiserver-advertise-address=192.168.56.110
 
 -------------------------
 Example Cluster Setup:
@@ -65,7 +65,7 @@ $ vagrant up
 
 ### --- EXAMPLE CONTROL (MASTER) KUBERNETES NODE SETUP ---  
 $ vagrant ssh control  
-$ sudo kubeadm init --apiserver-advertise-address=192.168.4.110  
+$ sudo kubeadm init --apiserver-advertise-address=192.168.56.110  
   
 To start using your cluster, you need to run the following as a regular user:  
   
@@ -75,7 +75,7 @@ To start using your cluster, you need to run the following as a regular user:
   
 Then you can join any number of worker nodes by running the following on each as root:  
   
-kubeadm join 192.168.4.110:6443 --token btnom1.grmjn91si3j7w9kx \  
+kubeadm join 192.168.56.110:6443 --token btnom1.grmjn91si3j7w9kx \  
     --discovery-token-ca-cert-hash sha256:ffc9f54f15bfc0822ac694739e6a2f26413108414d77563b82be3479a7af66f2  
   
 $ mkdir -p $HOME/.kube  
@@ -90,15 +90,15 @@ $ exit
   
 ### --- EXAMPLE WORKER KUBERNETES NODE SETUP ---  
 $ vagrant ssh worker1  
-$ sudo kubeadm join 192.168.4.110:6443 --token btnom1.grmjn91si3j7w9kx \  
+$ sudo kubeadm join 192.168.56.110:6443 --token btnom1.grmjn91si3j7w9kx \  
     --discovery-token-ca-cert-hash sha256:ffc9f54f15bfc0822ac694739e6a2f26413108414d77563b82be3479a7af66f2  
   
 $ vagrant ssh worker2  
-$ sudo kubeadm join 192.168.4.110:6443 --token btnom1.grmjn91si3j7w9kx \  
+$ sudo kubeadm join 192.168.56.110:6443 --token btnom1.grmjn91si3j7w9kx \  
     --discovery-token-ca-cert-hash sha256:ffc9f54f15bfc0822ac694739e6a2f26413108414d77563b82be3479a7af66f2  
   
 $ vagrant ssh worker3  
-$ sudo kubeadm join 192.168.4.110:6443 --token btnom1.grmjn91si3j7w9kx \  
+$ sudo kubeadm join 192.168.56.110:6443 --token btnom1.grmjn91si3j7w9kx \  
     --discovery-token-ca-cert-hash sha256:ffc9f54f15bfc0822ac694739e6a2f26413108414d77563b82be3479a7af66f2  
 
 This node has joined the cluster:  
